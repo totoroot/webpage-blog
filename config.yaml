@@ -1,8 +1,8 @@
-baseurl: https://example.com
+baseurl: https://matthias.thym.at/blog
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 5
-title: Example Site
+title: totoroot's blog
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
@@ -26,7 +26,7 @@ params:
     favicon:
 
     footer:
-        since: 2020
+        since: 2021
         customText:
 
     dateFormat:
@@ -34,11 +34,11 @@ params:
         lastUpdated: Jan 02, 2006 15:04 MST
 
     sidebar:
-        emoji: 🍥
-        subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        emoji: 🌿
+        subtitle: My Personal Brain Dump
         avatar:
             local: true
-            src: img/avatar.png
+            src: img/profile-picture.png
 
     article:
         math: false
@@ -109,6 +109,16 @@ menu:
           url: /
           weight: -100
           pre: home
+        - identifier: proofs
+          name: Identity Proofs
+          url: https://proofs.thym.at/
+          weight: -80
+          pre: link
+        - identifier: github
+          name: GitHub
+          url: https://github.com/totoroot
+          weight: -75
+          pre: link
 
 related:
     includeNewer: true
