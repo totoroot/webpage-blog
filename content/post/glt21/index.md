@@ -6,7 +6,7 @@ description: "Gotta Collect 'Em All - Metrics Easily Visualised"
 categories:
 tags: [
     "talk",
-    "linux",
+    "Linux",
     "telegraf",
     "metrics",
     "influxdb"
