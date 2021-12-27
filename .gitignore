@@ -6,7 +6,7 @@
 # Folders
 _obj
 _test
-resources/_gen
+resources/_gen/
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -20,12 +20,12 @@ _cgo_export.*
 
 _testmain.go
 
+.hugo_build.lock
+
 *.exe
 *.test
 
-/public
-/themes
-
-/resources
+public
+themes
 
 sshpf
