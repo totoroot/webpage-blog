@@ -3,16 +3,15 @@ author: "totoroot"
 title: "Grazer Linuxtage 2021"
 date: "2021-04-10"
 description: "Gotta Collect 'Em All - Metrics Easily Visualised"
-categories:
+categories: Talks
 tags: [
-    "talk",
     "Linux",
-    "telegraf",
-    "metrics",
-    "influxdb"
+    "Telegraf",
+    "Metrics",
+    "InfluxDB"
 ]
 slug: "glt21"
-image: ""
+image: "/glt21/screenshot-slide.png"
 draft: false
 ---
 

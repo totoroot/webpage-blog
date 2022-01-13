@@ -5,18 +5,18 @@ date: "2021-12-19"
 description: How to subscribe to OSM events
 categories:
 tags: [
-    "blog",
-    "mapping",
+    "Blog",
+    "Mapping",
     "OSM",
     "OpenStreetMap",
-    "event",
-    "calendar",
+    "Event",
+    "Calendar",
     "CalDAV",
     "Android",
     "Thunderbird",
-    "link list"
+    "Link List"
 ]
-image: ""
+image: "/osmcal/screenshot-austria.png"
 draft: false
 ---
 

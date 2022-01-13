@@ -32,8 +32,8 @@ params:
         customText:
 
     dateFormat:
-        published: Jan 02, 2006
-        lastUpdated: Jan 02, 2006 15:04 MST
+        published: January 02, 2006
+        lastUpdated: January 02, 2006 15:04 MST
 
     sidebar:
         emoji: 🌿
@@ -106,12 +106,17 @@ menu:
         - identifier: proofs
           name: Identity Proofs
           url: https://proofs.thym.at/
+          weight: -90
+          pre: link
+        - identifier: maps
+          name: Maps
+          url: /oepnv-graz
           weight: -80
           pre: link
         - identifier: github
           name: GitHub
           url: https://github.com/totoroot
-          weight: -75
+          weight: -70
           pre: link
 
 related:

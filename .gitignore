@@ -1,3 +1,13 @@
+### Hugo ###
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Temporary lock file while building
+/.hugo_build.lock
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -20,12 +30,8 @@ _cgo_export.*
 
 _testmain.go
 
-.hugo_build.lock
-
 *.exe
 *.test
 
-public
-themes
 
 sshpf
