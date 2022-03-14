@@ -9,9 +9,10 @@ aliases:
 license: CC BY-NC-ND
 lastmod: '2021-03-26'
 menu:
-    main: 
+    main:
         weight: -90
-        pre: user
+        params:
+            icon: user
 ---
 
 Hey there 👋

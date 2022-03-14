@@ -102,22 +102,38 @@ menu:
           name: Home
           url: /
           weight: -100
-          pre: home
+          params:
+            icon: home
+        - identifier: maps
+          name: Maps
+          url: /categories/maps/
+          weight: -90
+          params:
+            icon: map
+        - identifier: talks
+          name: Talks
+          url: /categories/talks/
+          weight: -80
+          params:
+            icon: group
         - identifier: proofs
           name: Identity Proofs
           url: https://proofs.thym.at/
-          weight: -90
-          pre: link
-        - identifier: maps
-          name: Maps
-          url: /oepnv-graz
-          weight: -80
-          pre: link
+          weight: -70
+          params:
+            icon: link
+        - identifier: codeberg
+          name: Codeberg
+          url: https://codeberg.org/totoroot
+          weight: -60
+          params:
+            icon: link
         - identifier: github
           name: GitHub
           url: https://github.com/totoroot
-          weight: -70
-          pre: link
+          weight: -59
+          params:
+            icon: link
 
 related:
     includeNewer: true
