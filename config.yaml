@@ -116,22 +116,22 @@ menu:
           weight: -80
           params:
             icon: group
-        - identifier: proofs
-          name: Identity Proofs
-          url: https://proofs.thym.at/
-          weight: -70
-          params:
-            icon: link
         - identifier: codeberg
           name: Codeberg
           url: https://codeberg.org/totoroot
-          weight: -60
+          weight: -66
           params:
             icon: link
         - identifier: github
           name: GitHub
           url: https://github.com/totoroot
-          weight: -59
+          weight: -65
+          params:
+            icon: link
+        - identifier: proofs
+          name: Identity Proofs
+          url: https://proofs.thym.at/
+          weight: -60
           params:
             icon: link
 
