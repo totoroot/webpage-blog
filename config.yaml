@@ -2,7 +2,7 @@
 
 baseurl: https://blog.thym.at/
 languageCode: en-us
-theme: hugo-theme-stack
+theme: ["hugo-github-calendar", "hugo-theme-stack"]
 paginate: 5
 title: totoroot's blog
 

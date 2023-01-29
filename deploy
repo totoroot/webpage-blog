@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -ex
+
+USER="e63197"
+HOST="e63197-ssh.services.easyname.eu"
+
+# git submodule update --init
+
+# generate static files with HUGO website generator
+hugo
+# copy everything from public directories over SSH
+sshpass -p "$(cat sshpf)" rsync -azv public/ "${USER}@${HOST}:html/blog.thym.at/"
+
+exit 0
