@@ -3,7 +3,6 @@ title: "OPNV Graz"
 author: "totoroot"
 description: Public Transport Map Graz
 date: 2022-01-13
-draft: false
 categories: Maps
 tags: [
     "Mapping",
@@ -11,7 +10,7 @@ tags: [
     "OpenStreetMap",
     "Leaflet"
 ]
-image: ""
+image: "/opnv-map.png"
 draft: false
 ---
 
