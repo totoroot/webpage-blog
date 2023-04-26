@@ -50,6 +50,9 @@ For that reason I would like to find a solution that works for window managers a
 
 I'll try and update this as soon as I find a solution for other desktop environments and window managers as well.
 
+Cheers,\
+Matthias
+
 ---
 
 *Title image by [Caspar Camille Rubin](https://unsplash.com/@casparrubin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/fPkvU7RDmCo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*
