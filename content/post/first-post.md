@@ -32,5 +32,5 @@ For the restart of my blog I have now taken to another [theme called 'Stack'](ht
 
 I hope you like it too!
 
-Cheers,
+Cheers,\
 Matthias

@@ -1,7 +1,7 @@
 ---
 title: "When Service Providers Split Up"
 date: 2022-03-14T12:52:27+01:00
-draft: false
+draft: true
 image: /service-providers/educom-xoxo.png
 tags:
     - mobile phone
@@ -16,7 +16,7 @@ tags:
     - A1
 ---
 
-*This post is probably only going to be interesting for you, if you reside in Austria and were a former customer of the mobile network operator 'educom'. However you are of course as well more than welcome to continue reading if that's not the case.*
+> This post is probably only going to be interesting for you, if you reside in **Austria** and were a former customer of the mobile network operator 'educom'. However you are of course as well more than welcome to continue reading if that's not the case.
 
 # When service providers split up
 
@@ -105,5 +105,7 @@ With a price of 55 Euros for 500/70 MBit/s the value proposition is certainly a 
 ![Screenshot of A1's availability check, showing that only download speeds of max. 150MBit/s are available for my address.](/service-providers/a1-verfuegbarkeit.png "Screenshot of A1's availability check, showing that only download speeds of max. 150MBit/s are available for my address.")
 
 Of course this is not sponsored in any way whatsoever.
+
+---
 
 *Logos of [educom](https://www.educom.at/) and [XOXO](https://www.xoxo-mobile.at/) taken from their respective websites.*
