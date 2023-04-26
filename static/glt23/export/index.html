@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Alles Nix</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/simple.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/blood.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="dracula.css">
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+    <div id="logo" style="position: fixed; top: 20px; left: 20px; z-index: 1; height:3rem;">
+        <img src="assets/images/steirernix.svg" style="height:100%"/>
+    </div>
+
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h1>Alles Nix</h1>
+<h4>Reproduzierbar, Deklarativ, Zuverlässig</h4>
+<!-- Notes in standard format are currently rendered as regular text with evilz/vscode-reveal. This is a known bug (https://github.com/evilz/vscode-reveal/issues/295) and the following HTML tag can be used as a workaround. -->
+<aside class="notes" data-markdown="">
+<p>Before we start, I would like to say that I will mention a couple of concepts, projects and resources for which I will not go into any detail.
+Let me assure you that all of them will be listed on the last few slides. Which brings me to the next important point.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Follow this live</h3>
+<img data-src="assets/images/qrcode-post.svg" width=47%>
+<p><a href="https://blog.thym.at/glt23">https://blog.thym.at/glt23</a></p>
+<aside class="notes" data-markdown="">
+<p>You can follow the presentation live in your browser and go through the slides in your own pace. The slides will stay avaiable under this URL afterwards as well, so you can go through all of the mentioned resources whenever you feel ready to start your Nix journey.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Who am I?</h2>
+<ul>
+<li>Student at Graz University of Technology 🎓</li>
+<li>Backend Engineer / Linux SysAdmin 👨‍💻</li>
+<li>Linux Advocate and Avid User of FOSS 🐧</li>
+<li>Daily Driving NixOS since 2019 ❄️</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What is Nix? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<p>Not to be confused with *nix</p>
+<hr>
+<h2>What is Nix? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<ul>
+<li>Nix Language</li>
+<li>Nix Package Manager</li>
+<li>Nix Package Library - Nixpkgs</li>
+<li>Nix Operating System - NixOS</li>
+<li>…</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Nix Language</h2>
+<ul>
+<li>Domain-specific</li>
+<li>Purely functional</li>
+<li>Dynamically typed</li>
+<li>Lazily evaluated</li>
+</ul>
+<aside class="notes" data-markdown="">
+<p>Tutorial for Nix language basics with examples takes about two hours to complete, or less if you have some experience with functional programming languages like Haskell, Racket or Clojure.</p>
+<p>Nix comes with an experimental REPL (Read-Eval-Print Loop).</p>
+</aside>
+<hr>
+<h2>Nix Language</h2>
+<h3>Lazy evaluation</h3>
+<pre><code class="language-nix">let
+  data = {
+   a = 1;
+   b = functionThatTakesMinutesToRun 2;
+ };
+in data.a
+</code></pre>
+<aside class="notes" data-markdown="">
+<p>In Nix this takes approximately no time to run, becaus the value of “b” isn’t actually evaluated until it’s needed.</p>
+<p>We’re creating an attribute set and extract “a” from it. This evaluates to “1” almost instantly, without ever running the code that generates “b”.</p>
+</aside>
+<hr>
+<h2>Nix Language</h2>
+<ul>
+<li>Used to declare packages and configurations</li>
+<li>Build derivations</li>
+</ul>
+<aside class="notes" data-markdown="">
+<p>Used to declare packages and configurations to be built by Nix.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Building a Nix derivation</h3>
+<pre><code class="language-bash">#!/bin/env bash
+</code></pre>
+<img data-src="assets/images/nixpkgs-bash-meme.png" width=90%>
+<aside class="notes" data-markdown="">
+<p>The rest of this section will just be shown in case the shell demo goes wrong. If everything goes according to plan, we skip the sub-slides by going right.</p>
+</aside>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-nix">{ lib
+, stdenv
+}:
+
+stdenv.mkDerivation {
+  pname = &quot;example&quot;;
+  version = &quot;1.0&quot;;
+
+  dontUnpack = true;
+
+  installPhase = ''
+    mkdir -p $out/bin
+    cat &gt; $out/bin/linuxtage &lt;&lt; EOF
+    #!/usr/bin/env sh
+    echo &quot;Hello, world! Welcome to Grazer Linuxtage 2023!&quot;
+    EOF
+    chmod +x $out/bin/linuxtage
+  '';
+
+  meta = with lib; {
+    description = &quot;An example package&quot;;
+    license = licenses.unfree;
+    maintainers = [ maintainers.totoroot ];
+  };
+}
+</code></pre>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-bash">nix-build -E 'with import &lt;nixpkgs&gt; {}; callPackage ./example.nix {}
+</code></pre>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-bash">λ /nix/store/zgnwkbmr528n6pjw8h1zy3ps9l90myl0-example-1.0/bin/linuxtage
+Hello, welcome to Grazer Linuxtage 2023!
+</code></pre>
+<p>🎉 🎉 🎉</p>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-nix">{ lib
+, stdenv
+, zsh
+, hello
+}:
+
+stdenv.mkDerivation {
+  pname = &quot;example&quot;;
+  version = &quot;1.0&quot;;
+
+  dontUnpack = true;
+
+  installPhase = ''
+    mkdir -p $out/bin
+    cat &gt; $out/bin/linuxtage &lt;&lt; EOF
+    #!${zsh}/bin/zsh
+    echo &quot;$(${hello}/bin/hello) Welcome to Grazer Linuxtage $(date +'%Y')!&quot;
+    EOF
+    chmod +x $out/bin/linuxtage
+  '';
+
+  meta = with lib; {
+    description = &quot;An example package&quot;;
+    license = licenses.gpl3Plus;
+    maintainers = [ maintainers.totoroot ];
+  };
+}
+</code></pre>
+<aside class="notes" data-markdown="">
+<p>Tools provided by <code>stdenv</code>:</p>
+<ul>
+<li>The GNU C Compiler, configured with C and C++ support.</li>
+<li>GNU coreutils (contains a few dozen standard Unix commands).</li>
+<li>GNU findutils (contains <code>find</code>).</li>
+<li>GNU diffutils (contains <code>diff</code>, <code>cmp</code>).</li>
+<li>GNU <code>sed</code>.</li>
+<li>GNU <code>grep</code>.</li>
+<li>GNU <code>awk</code>.</li>
+<li>GNU <code>tar</code>.</li>
+<li><code>gzip</code>, <code>bzip2</code> and <code>xz</code>.</li>
+<li>GNU Make.</li>
+<li>Bash. This is the shell used for all builders in the Nix Packages collection. Not using <code>/bin/sh</code> removes a large source of portability problems.</li>
+<li>The <code>patch</code> command.</li>
+</ul>
+<p>On Linux, <code>stdenv</code> also includes the <code>patchelf</code> utility.</p>
+</aside>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-bash">nix-build -E 'with import &lt;nixpkgs&gt; {}; callPackage ./a-very-sophisticated-example.nix {}
+</code></pre>
+<hr>
+<h3>Building a Nix derivation</h3>
+<pre><code class="language-bash">λ /nix/store/sg0g9xlhnb9z0m6yrdykjmqz9dcdvb9b-example-1.0/bin/linuxtage
+Hello, welcome to Grazer Linuxtage 2023!
+</code></pre>
+<p>😐</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Nix Package Library - Nixpkgs</h2>
+<img data-src="assets/images/nixpkgs.svg" width=100%>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Nixpkgs</h2>
+<h3>Example package</h3>
+<h4>curl’s default.nix</h4>
+<pre><code class="language-nix">{ lib, stdenv, fetchurl, pkg-config, perl, nixosTests
+, brotliSupport ? false, brotli
+, c-aresSupport ? false, c-aresMinimal
+, gnutlsSupport ? false, gnutls
+, gsaslSupport ? false, gsasl
+, gssSupport ? with stdenv.hostPlatform; (
+    !isWindows &amp;&amp;
+    # disable gss because of: undefined reference to `k5_bcmp'
+    # a very sad story re static: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=439039
+    !isStatic &amp;&amp;
+    # the &quot;mig&quot; tool does not configure its compiler correctly. This could be
+    # fixed in mig, but losing gss support on cross compilation to darwin is
+    # not worth the effort.
+    !(isDarwin &amp;&amp; (stdenv.buildPlatform != stdenv.hostPlatform))
+  ), libkrb5
+, http2Support ? true, nghttp2
+, http3Support ? false, nghttp3, ngtcp2
+, idnSupport ? false, libidn2
+, ldapSupport ? false, openldap
+, opensslSupport ? zlibSupport, openssl
+, pslSupport ? false, libpsl
+, rtmpSupport ? false, rtmpdump
+, scpSupport ? zlibSupport &amp;&amp; !stdenv.isSunOS &amp;&amp; !stdenv.isCygwin, libssh2
+, wolfsslSupport ? false, wolfssl
+, rustlsSupport ? false, rustls-ffi
+, zlibSupport ? true, zlib
+, zstdSupport ? false, zstd
+
+# for passthru.tests
+, coeurl
+, curlpp
+, haskellPackages
+, ocamlPackages
+, phpExtensions
+, python3
+, tests
+, testers
+, fetchpatch
+}:
+
+# This package is used for bootstrapping fetchurl, and thus
+# cannot use fetchpatch! All mutable patches (generated by GitHub or
+# cgit) that are needed here should be included directly in Nixpkgs as
+# files.
+
+assert !((lib.count (x: x) [ gnutlsSupport opensslSupport wolfsslSupport rustlsSupport ]) &gt; 1);
+
+stdenv.mkDerivation (finalAttrs: {
+  pname = &quot;curl&quot;;
+  version = &quot;8.0.1&quot;;
+
+  src = fetchurl {
+    urls = [
+      &quot;https://curl.haxx.se/download/curl-${finalAttrs.version}.tar.bz2&quot;
+      &quot;https://github.com/curl/curl/releases/download/curl-${finalAttrs.version}/curl-${finalAttrs.version}.tar.bz2&quot;
+    ];
+    hash = &quot;sha256-m2selrdI0EuWh4a2vfQHqlx1q1Oj03wcjIHNtzZVXM8=&quot;;
+  };
+
+  patches = [
+    ./7.79.1-darwin-no-systemconfiguration.patch
+  ];
+
+  outputs = [ &quot;bin&quot; &quot;dev&quot; &quot;out&quot; &quot;man&quot; &quot;devdoc&quot; ];
+  separateDebugInfo = stdenv.isLinux;
+
+  enableParallelBuilding = true;
+
+  strictDeps = true;
+
+  nativeBuildInputs = [ pkg-config perl ];
+
+  # Zlib and OpenSSL must be propagated because `libcurl.la' contains
+  # &quot;-lz -lssl&quot;, which aren't necessary direct build inputs of
+  # applications that use Curl.
+  propagatedBuildInputs = with lib;
+    optional brotliSupport brotli ++
+    optional c-aresSupport c-aresMinimal ++
+    optional gnutlsSupport gnutls ++
+    optional gsaslSupport gsasl ++
+    optional gssSupport libkrb5 ++
+    optional http2Support nghttp2 ++
+    optionals http3Support [ nghttp3 ngtcp2 ] ++
+    optional idnSupport libidn2 ++
+    optional ldapSupport openldap ++
+    optional opensslSupport openssl ++
+    optional pslSupport libpsl ++
+    optional rtmpSupport rtmpdump ++
+    optional scpSupport libssh2 ++
+    optional wolfsslSupport wolfssl ++
+    optional rustlsSupport rustls-ffi ++
+    optional zlibSupport zlib ++
+    optional zstdSupport zstd;
+
+  # for the second line see https://curl.haxx.se/mail/tracker-2014-03/0087.html
+  preConfigure = ''
+    sed -e 's|/usr/bin|/no-such-path|g' -i.bak configure
+    rm src/tool_hugehelp.c
+  '';
+
+  configureFlags = [
+      # Build without manual
+      &quot;--disable-manual&quot;
+      (lib.enableFeature c-aresSupport &quot;ares&quot;)
+      (lib.enableFeature ldapSupport &quot;ldap&quot;)
+      (lib.enableFeature ldapSupport &quot;ldaps&quot;)
+      # --with-ca-fallback is only supported for openssl and gnutls https://github.com/curl/curl/blame/curl-8_0_1/acinclude.m4#L1640
+      (lib.withFeature (opensslSupport || gnutlsSupport) &quot;ca-fallback&quot;)
+      (lib.withFeature http3Support &quot;nghttp3&quot;)
+      (lib.withFeature http3Support &quot;ngtcp2&quot;)
+      (lib.withFeature rtmpSupport &quot;librtmp&quot;)
+      (lib.withFeature rustlsSupport &quot;rustls&quot;)
+      (lib.withFeature zstdSupport &quot;zstd&quot;)
+      (lib.withFeatureAs brotliSupport &quot;brotli&quot; (lib.getDev brotli))
+      (lib.withFeatureAs gnutlsSupport &quot;gnutls&quot; (lib.getDev gnutls))
+      (lib.withFeatureAs idnSupport &quot;libidn2&quot; (lib.getDev libidn2))
+      (lib.withFeatureAs opensslSupport &quot;openssl&quot; (lib.getDev openssl))
+      (lib.withFeatureAs scpSupport &quot;libssh2&quot; (lib.getDev libssh2))
+      (lib.withFeatureAs wolfsslSupport &quot;wolfssl&quot; (lib.getDev wolfssl))
+    ]
+    ++ lib.optional gssSupport &quot;--with-gssapi=${lib.getDev libkrb5}&quot;
+       # For the 'urandom', maybe it should be a cross-system option
+    ++ lib.optional (stdenv.hostPlatform != stdenv.buildPlatform)
+       &quot;--with-random=/dev/urandom&quot;
+    ++ lib.optionals stdenv.hostPlatform.isWindows [
+      &quot;--disable-shared&quot;
+      &quot;--enable-static&quot;
+    ] ++ lib.optionals stdenv.isDarwin [
+      # Disable default CA bundle, use NIX_SSL_CERT_FILE or fallback to nss-cacert from the default profile.
+      # Without this curl might detect /etc/ssl/cert.pem at build time on macOS, causing curl to ignore NIX_SSL_CERT_FILE.
+      &quot;--without-ca-bundle&quot;
+      &quot;--without-ca-path&quot;
+    ] ++ lib.optionals (!gnutlsSupport &amp;&amp; !opensslSupport &amp;&amp; !wolfsslSupport &amp;&amp; !rustlsSupport) [
+      &quot;--without-ssl&quot;
+    ];
+
+  CXX = &quot;${stdenv.cc.targetPrefix}c++&quot;;
+  CXXCPP = &quot;${stdenv.cc.targetPrefix}c++ -E&quot;;
+
+  # takes 14 minutes on a 24 core and because many other packages depend on curl
+  # they cannot be run concurrently and are a bottleneck
+  # tests are available in passthru.tests.withCheck
+  doCheck = false;
+  preCheck = ''
+    patchShebangs tests/
+  '' + lib.optionalString stdenv.isDarwin ''
+    # bad interaction with sandbox if enabled?
+    rm tests/data/test1453
+    rm tests/data/test1086
+  '' + lib.optionalString stdenv.hostPlatform.isMusl ''
+    # different resolving behaviour?
+    rm tests/data/test1592
+  '';
+
+  postInstall = ''
+    moveToOutput bin/curl-config &quot;$dev&quot;
+
+    # Install completions
+    make -C scripts install
+  '' + lib.optionalString scpSupport ''
+    sed '/^dependency_libs/s|${lib.getDev libssh2}|${lib.getLib libssh2}|' -i &quot;$out&quot;/lib/*.la
+  '' + lib.optionalString gnutlsSupport ''
+    ln $out/lib/libcurl${stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libcurl-gnutls${stdenv.hostPlatform.extensions.sharedLibrary}
+    ln $out/lib/libcurl${stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libcurl-gnutls${stdenv.hostPlatform.extensions.sharedLibrary}.4
+    ln $out/lib/libcurl${stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libcurl-gnutls${stdenv.hostPlatform.extensions.sharedLibrary}.4.4.0
+  '';
+
+  passthru = let
+    useThisCurl = attr: attr.override { curl = finalAttrs.finalPackage; };
+  in {
+    inherit opensslSupport openssl;
+    tests = {
+      withCheck = finalAttrs.finalPackage.overrideAttrs (_: { doCheck = true; });
+      fetchpatch = tests.fetchpatch.simple.override { fetchpatch = (fetchpatch.override { fetchurl = useThisCurl fetchurl; }) // { version = 1; }; };
+      curlpp = useThisCurl curlpp;
+      coeurl = useThisCurl coeurl;
+      haskell-curl = useThisCurl haskellPackages.curl;
+      ocaml-curly = useThisCurl ocamlPackages.curly;
+      pycurl = useThisCurl python3.pkgs.pycurl;
+      php-curl = useThisCurl phpExtensions.curl;
+      # error: attribute 'override' missing
+      # Additional checking with support http3 protocol.
+      # nginx-http3 = useThisCurl nixosTests.nginx-http3;
+      nginx-http3 = nixosTests.nginx-http3;
+      pkg-config = testers.testMetaPkgConfig finalAttrs.finalPackage;
+    };
+  };
+
+  meta = with lib; {
+    changelog = &quot;https://curl.se/changes.html#${lib.replaceStrings [ &quot;.&quot; ] [ &quot;_&quot; ] finalAttrs.version}&quot;;
+    description = &quot;A command line tool for transferring files with URL syntax&quot;;
+    homepage    = &quot;https://curl.se/&quot;;
+    license = licenses.curl;
+    maintainers = with maintainers; [ lovek323 ];
+    platforms = platforms.all;
+    # Fails to link against static brotli or gss
+    broken = stdenv.hostPlatform.isStatic &amp;&amp; (brotliSupport || gssSupport);
+    pkgConfigModules = [ &quot;libcurl&quot; ];
+  };
+})
+</code></pre>
+<hr>
+<h4>Repository Size and Freshness</h4>
+<img data-src="assets/images/map_repo_size_fresh-2023-04-14T17:47-zoomed.svg" width=75%>
+<hr>
+<h4>In its own class</h4>
+<img data-src="assets/images/map_repo_size_fresh-2023-04-14T17:47.svg" width=75%>
+<aside class="notes" data-markdown="">
+<p>Since NixOS is a Linux distributiong built on the Nix Package library, NixOS is known as the most up to date distribution while also being the distribution with the most packages.
+All packages in Nixpkgs have been reviewed by a memeber of nixpkgs. For an even larger collection of community package description there is the NUR that are vuilt from source.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Nix Package Manager</h2>
+<ul>
+<li>For Linux and other Unix systems
+<ul>
+<li>Yes, that includes macOS</li>
+</ul>
+</li>
+<li>Makes package management reproducible and reliable</li>
+</ul>
+<aside class="notes" data-markdown="">
+<p>If, like me, you had to or have to use macOS at work, you might be familiar with homebrew or brew.
+While you can get some reproducibility with <code>brew bundle</code> by creating and applying a Brewfile or even a Brewfile manager, Nix goes a few steps further.</p>
+</aside>
+<hr>
+<h2>Nix Package Manager</h2>
+<pre><code>nix-env -iA nixos.curl
+nix-env -iA unstable.curl
+</code></pre>
+<aside class="notes" data-markdown="">
+<p>One can use Nix like most other package managers like brew or apt, but this is not very declarative and only with good notes sort-of reproducible.
+This is not how we do things on NixOS.</p>
+</aside>
+<hr>
+<h3>Home Manager</h3>
+<pre><code class="language-nix">programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+
+home.packages = with pkgs; [
+  coreutils
+  curl
+  wget
+];
+
+home.file = {
+  &quot;.zshrc&quot;.source = ../config/zsh/.zshrc;
+};
+
+home.sessionVariables = {
+  HOMEBREW_NO_INSTALL_CLEANUP = &quot;TRUE&quot;;
+};
+</code></pre>
+<hr>
+<h3>Home Manager</h3>
+<pre><code class="language-nix">homebrew = {
+  enable = true;
+  onActivation = {
+    autoUpdate = true;
+    upgrade = true;
+    # &quot;zap&quot; removes manually installed brews and casks
+    cleanup = &quot;zap&quot;;
+  };
+  brews = [
+    &quot;cliclick&quot;
+  ];
+  casks = [
+    &quot;alt-tab&quot;
+  ];
+  taps = [
+    # ...
+  ];
+};
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What is NixOS? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<ul>
+<li>Started as research project by Eeelco Dolstra in 2003</li>
+<li>Took off after first stable release branch in 2013 (13.10)</li>
+<li>Stable releases in May and November (e.g. Raccoon - 22.11)</li>
+<li>Receive bugfixes and security updates for 7 months</li>
+</ul>
+<!-- NixOS is a Linux distribution that has been around since 2003 and was started by Eelco Dolstra as a research project. The distribution only really took off after the first stable release in 2013.
+
+On NixOS you can follow several different channels.
+
+There is a stable release of NixOS twice a year in May and November, with a code name like Raccoon and a version number like 22.11 for the November release of 2022.
+
+Every stable release will receive bugfixes and security updates for seven months. -->
+<aside class="notes" data-markdown="">
+<p>After using stable channels for about a year, I have been using the unstable channel since then and have not really had problems, besides the occasional failing build.</p>
+<p>While it is not recommended it is also possible to directly follow the master branch of Nixpkgs.</p>
+<p>It features atomic upgrades and rollbacks.</p>
+<hr>
+<h2>NixOS <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><samp>environment.systemPackages = with pkgs; [
+  git
+  curl
+  zsh
+  # Modern and intuitive terminal-based text editor
+  micro
+];
+</samp></pre>
+<hr>
+<h2>NixOS <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><samp># Find system disk by nixos label by dedault
+fileSystems.&quot;/&quot;.device = &quot;/dev/disk/by-label/nixos&quot;;
+
+# Use the latest kernel by default
+boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+</samp></pre>
+<hr>
+<h2>NixOS <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><samp>services = {
+  # Start a systemd service for each incoming SSH connection
+  openssh.startWhenNeeded = true;
+  # Enable periodic SSD TRIM to extend life of mounted SSDs
+  fstrim.enable = true;
+  # Suspend when power button is short-pressed
+  logind.extraConfig = ''
+    HandlePowerKey=suspend
+  '';
+};
+</samp></pre>
+<aside class="notes" data-markdown="">
+<p>NixOS relies heavily on systemd, but there is experimental support for other init systems.</p>
+</aside>
+<hr>
+<h2>NixOS <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><samp># Take out the garbage every once in a while
+nix.gc = {
+  automatic = true;
+  dates = &quot;weekly&quot;;
+  options = &quot;--delete-older-than 30d&quot;;
+};
+</samp></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Communities</h2>
+<ul>
+<li>Discourse</li>
+<li>Matrix</li>
+<li>GitHub</li>
+<li>Discord 😒</li>
+</ul>
+<aside class="notes" data-markdown="">
+<p>What can you do now when a build for a package or system derivation fails?</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/qrcode-nixos-at.svg" width=40%>
+</a>
+<p><a href="https://nixos.at">https://nixos.at</a></p>
+<hr>
+<h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/website-screenshot.png" width=80%>
+</a>
+<hr>
+<h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/next-meetup.png" width=80%>
+</a>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>devenv</h2>
+<pre><code class="language-nix">{ pkgs, ... }: {
+  env.GREET = &quot;Let's get started with&quot;;
+
+  enterShell = &quot;echo $GREET Rust&quot;;
+
+  languages.rust = {
+    enable = true;
+    version = &quot;nightly&quot;;
+  };
+
+  pre-commit.hooks = {
+    clippy.enable = true;
+    rustfmt.enable = true;
+  };
+
+  packages = [ pkgs.delta ];
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Mentioned Resources</h3>
+<h4>Nix Language</h4>
+<ul>
+<li><a href="https://nixos.org/manual/nix/stable/language/index.html">Nix Language Reference</a> - Nix Reference Manual</li>
+<li><a href="https://nixos.org/guides/nix-language.html">Nix Language Basics</a> - NixOS Guide</li>
+<li><a href="https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-repl.html">Nix REPL</a> - Nix Reference Manual</li>
+</ul>
+<hr>
+<h3>Mentioned Resources</h3>
+<h4>Nix Package Manager</h4>
+<ul>
+<li><a href="https://github.com/Homebrew/homebrew-bundle">Homebrew Bundle</a> - GitHub Repository</li>
+<li><a href="https://homebrew-file.readthedocs.io/en/latest/">Brewfile Manager</a> - Homebrew-file’s Documentation</li>
+<li><a href="https://nix-community.github.io/home-manager/index.html">Home Manager Manual</a></li>
+<li><a href="https://mipmip.github.io/home-manager-option-search/">Home Manager Option Search</a></li>
+</ul>
+<hr>
+<h3>Mentioned Resources</h3>
+<h4>Nixpkgs</h4>
+<ul>
+<li><a href="https://ryantm.github.io/nixpkgs/stdenv/stdenv/#sec-tools-of-stdenv">Tools in stdenv</a> - Nixpkgs Manual</li>
+<li><a href="https://repology.org/repositories/graphs">Repository Size and Freshness Graphs</a> - Repology</li>
+<li><a href="https://github.com/nix-community/NUR/">Nix User Repository - NUR</a> - GitHub Repository</li>
+</ul>
+<hr>
+<h3>Mentioned Resources</h3>
+<h4>NixOS</h4>
+<ul>
+<li><a href="https://nixos.org/">NixOS</a> - Project Website</li>
+<li><a href="https://nixos.org/blog/announcements.html">History of Nix/NixOS</a> - Nix Blog Announcements</li>
+<li><a href="https://nix.dev/">Nix Guide</a> - Opinionated Guide for Developers</li>
+<li><a href="https://nixos.wiki/">NixOS Wiki</a> - Unofficial User’s Wiki</li>
+<li><a href="https://codeberg.org/totoroot/dotfiles">My Personal Dotfiles</a> - Codeberg Repository</li>
+</ul>
+<hr>
+<h3>Mentioned Resources</h3>
+<h4>Communities</h4>
+<ul>
+<li><a href="https://discourse.nixos.org/">Discourse</a></li>
+<li><a href="https://matrix.to/#/#community:nixos.org">Matrix</a></li>
+<li><a href="https://web.libera.chat/?nick=Guest?#nixos">IRC</a></li>
+<li><a href="https://github.com/NixOS/nixpkgs/issues">GitHub</a></li>
+<li><a href="https://discord.gg/RbvHtGa">Discord</a></li>
+</ul>
+<hr>
+<h3>Mentioned Resources</h3>
+<ul>
+<li><a href="https://devenv.sh/">devenv</a> - Developer Environments using Nix</li>
+<li><a href="https://nix-community.github.io/awesome-nix/">Awesome Nix</a> - Community-maintained link list with helpful resources</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Attributions</h3>
+<ul>
+<li>Example for lazy evaluation taken from <a href="https://shopify.engineering/what-is-nix">What is Nix</a> - Shopify</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Thanks!</h1>
+<p>curl -sL <a href="https://matthias.thym.at">https://matthias.thym.at</a>/card <br>
+<br>
+<a href="https://blog.thym.at/p/glt23/">https://blog.thym.at/p/glt23</a></p>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
