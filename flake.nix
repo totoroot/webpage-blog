@@ -7,7 +7,7 @@
 
     # Import theme
     stack = {
-      url = "git+https://codeberg.org/totoroot/hugo-theme-stack?ref=leaflet-shortcodes";
+      url = "git+https://codeberg.org/totoroot/hugo-theme-stack?ref=main";
       flake = false;
     };
 

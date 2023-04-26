@@ -62,16 +62,16 @@
     "stack": {
       "flake": false,
       "locked": {
-        "lastModified": 1662315195,
-        "narHash": "sha256-o2ZR9KIeejCM57hCMEBdopFPdMYFsnwgCKN4gE6f504=",
-        "ref": "leaflet-shortcodes",
-        "rev": "7c158c4fa82e40c3c8eb6762dd15797d83503401",
-        "revCount": 525,
+        "lastModified": 1682499090,
+        "narHash": "sha256-+MYoAipOFgOWfMcbMiNDrOEr/4ei5Mym+rKICNnMyyg=",
+        "ref": "main",
+        "rev": "f574a8f9b960751083032a4f43ab927471ae53f3",
+        "revCount": 527,
         "type": "git",
         "url": "https://codeberg.org/totoroot/hugo-theme-stack"
       },
       "original": {
-        "ref": "leaflet-shortcodes",
+        "ref": "main",
         "type": "git",
         "url": "https://codeberg.org/totoroot/hugo-theme-stack"
       }
