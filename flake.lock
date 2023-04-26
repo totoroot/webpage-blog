@@ -1,0 +1,97 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1681202837,
+        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "github-calendar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680258091,
+        "narHash": "sha256-1IKnw78iwhlF2AEbiPD6PVxNM0lXc8PvjLNQITelSkQ=",
+        "ref": "main",
+        "rev": "2f9f47bd7034f7ed6abddde7f356cd90640d1ad2",
+        "revCount": 4,
+        "type": "git",
+        "url": "https://codeberg.org/totoroot/hugo-github-calendar"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://codeberg.org/totoroot/hugo-github-calendar"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1682453498,
+        "narHash": "sha256-WoWiAd7KZt5Eh6n+qojcivaVpnXKqBsVgpixpV2L9CE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c8018361fa1d1650ee8d4b96294783cf564e8a7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "github-calendar": "github-calendar",
+        "nixpkgs": "nixpkgs",
+        "stack": "stack"
+      }
+    },
+    "stack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662315195,
+        "narHash": "sha256-o2ZR9KIeejCM57hCMEBdopFPdMYFsnwgCKN4gE6f504=",
+        "ref": "leaflet-shortcodes",
+        "rev": "7c158c4fa82e40c3c8eb6762dd15797d83503401",
+        "revCount": 525,
+        "type": "git",
+        "url": "https://codeberg.org/totoroot/hugo-theme-stack"
+      },
+      "original": {
+        "ref": "leaflet-shortcodes",
+        "type": "git",
+        "url": "https://codeberg.org/totoroot/hugo-theme-stack"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -5,33 +5,20 @@
 /assets/jsconfig.json
 hugo_stats.json
 
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
 # Temporary lock file while building
 /.hugo_build.lock
 
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
-
-# Folders
-_obj
-_test
-resources/_gen/
-
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
-
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
-
-_testmain.go
-
-*.exe
-*.test
-
-
+### Deployment ###
 sshpf
+deploy
+.direnv
+result
+
+# Linked from /nix/store
+themes/stack
+themes/github-calendar

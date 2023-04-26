@@ -1,7 +1,0 @@
-
-[submodule "themes/hugo-theme-stack"]
-	path = themes/hugo-theme-stack
-	url = git@github.com:totoroot/hugo-theme-stack.git
-[submodule "themes/hugo-github-calendar"]
-	path = themes/hugo-github-calendar
-	url = https://github.com/totoroot/hugo-github-calendar.git
