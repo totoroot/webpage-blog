@@ -104,16 +104,22 @@ menu:
           weight: -100
           params:
             icon: home
+        - identifier: til
+          name: TIL
+          url: /categories/til/
+          weight: -90
+          params:
+            icon: brain
         - identifier: maps
           name: Maps
           url: /categories/maps/
-          weight: -90
+          weight: -80
           params:
             icon: map
         - identifier: talks
           name: Talks
           url: /categories/talks/
-          weight: -80
+          weight: -70
           params:
             icon: group
         - identifier: codeberg
@@ -121,13 +127,13 @@ menu:
           url: https://codeberg.org/totoroot
           weight: -66
           params:
-            icon: link
+            icon: git
         - identifier: github
           name: GitHub
           url: https://github.com/totoroot
           weight: -65
           params:
-            icon: link
+            icon: github
         - identifier: proofs
           name: Identity Proofs
           url: https://proofs.thym.at/
