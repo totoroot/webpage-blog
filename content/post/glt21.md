@@ -25,5 +25,5 @@ I will probably give some more information about my experiences speaking at #GLT
 
 If you have any questions regarding my talk or want to give personal feedback feel free to reach out to me via Email or [DeltaChat](https://delta.chat/en/) at chat\[at\]thym.at.
 
-Cheers,
+Cheers,\
 Matthias
