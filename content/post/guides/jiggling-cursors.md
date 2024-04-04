@@ -3,7 +3,7 @@ author: "totoroot"
 title: "Jiggling Cursors"
 date: "2023-03-22"
 description: "Replicating something rare on my Linux machines - a thing I like about macOS"
-categories:
+categories: "Guides"
 tags: [
     "Linux",
     "macOS",
