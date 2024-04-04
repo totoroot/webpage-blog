@@ -36,6 +36,8 @@ If it was not that easy, my next go to option is `yt-dlp`, a well-maintained and
 
 Installation and usage instructions can be found on [the project's GitHub page](https://github.com/yt-dlp/yt-dlp).
 
+A useful guide that shows how to use the `yt-dlp` Python client to download a bunch of videos from a site, can be found [here](https://www.trickster.dev/post/how-to-download-embedded-videos/).
+
 If `yt-dlp` does not manage to download the video, do not despair.
 However, the effort required to download the video, will only increase.
 
@@ -202,6 +204,8 @@ tac segments.txt
 I wanted to mention this here, since I often forget `tac` exists and it can be quite useful.
 
 ### Merging video segments
+
+All that's left to do is merging all video segments according to the list using `ffmpeg`.
 
 ```sh
 ffmpeg -f concat -i segments.txt -c copy video.mp4
