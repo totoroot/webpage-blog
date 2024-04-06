@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Declarative and reproducible Homelab on NixOS ❄️</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/simple.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/blood.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="dracula.css">
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+    <div id="logo" style="position: fixed; top: 20px; left: 20px; z-index: 1; height:3rem;">
+        <img src="assets/images/steirernix.svg" style="height:100%"/>
+    </div>
+
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h1>Homelab on NixOS</h1>
+<h4>Declarative and reproducible ❄️</h4>
+<!-- Notes in standard format are currently rendered as regular text with evilz/vscode-reveal. This is a known bug (https://github.com/evilz/vscode-reveal/issues/295) and the following HTML tag can be used as a workaround. -->
+<aside class="notes" data-markdown="">
+<p>After last year’s great attendance at my introductory talk on Nix and NixOS, I thought I’d follow up with a more detailed explanation of how you can leverage NixOS for something that would otherwise be very tedious to set up.</p>
+<p>Before I introduce myself, I would like to thank the organisers of the Grazer Linuxtage and everyone helping for once again making it possible for me to present something I and hopefully all of you are interested in.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Follow this live</h3>
+<img data-src="assets/images/qrcode.svg" width=47%>
+<p><a href="https://blog.thym.at/glt24">https://blog.thym.at/glt24</a></p>
+<aside class="notes" data-markdown="">
+<p>You can follow the presentation live in your browser and go through the slides at your own pace. The slides will stay avaiable under this URL afterwards as well, so you can go through all of the mentioned resources whenever you feel ready to start your Nix journey.</p>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Who am I?</h2>
+<ul>
+<li>Student at Graz University of Technology 🎓</li>
+<li>DevOps Engineer/Automation Specialist at <a href="https://smaxtec.com/en/">smaXtec</a> 🐄</li>
+<li>Linux Advocate and Avid User of FOSS 🐧</li>
+<li>Daily Driving NixOS since 2020 ❄️</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What is a homelab?</h2>
+<hr>
+<h4>What is a homelab?</h4>
+<aside class="notes" data-markdown="">
+<p>Firstly, a lab or laboratory is a place where you can safely do experiments. But not quite like this.</p>
+</aside>
+<img data-src="assets/images/lab.jpg" width=90%>
+<p>Photo by <a href="https://unsplash.com/@nci?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">National Cancer Institute</a> on <a href="https://unsplash.com/photos/grayscale-photo-of-man-and-woman-inside-laboratory-gKT3ooTuS_w?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+<hr>
+<h2>What is a homelab?</h2>
+<aside class="notes" data-markdown="">
+<p>Quick question. How many of you would say that they work in IT or a related field? Please raise your hands if you do.</p>
+<p>Most of you will probably agree that playing with production equipment at work is not a good idea.</p>
+<p>So many of us will opt to build a “production” environment at home, that becomes our lab. A enviroment we can safely do experiments in.</p>
+</aside>
+<hr>
+<h4>What is a homelab?</h4>
+<aside class="notes" data-markdown="">
+<p>In case you have never heard the term, homelab or home server is the name given to a server (or multiple server setup) that resides locally in your home and where you host several applications and virtualized systems for testing and developing or for home and functional usage.</p>
+<p>It can be a repurposed professional server that you acquired from a company or university which discarded them due to their age but are still usable.</p>
+<p>Of course this server can also be a Raspberry Pi or similar single board computer, a desktop tower or some small form factor PC.</p>
+<p>Maybe all of that with some networking equipment like switches and stuff.</p>
+</aside>
+<img data-src="assets/images/homelab-big.jpg" width=40%>
+<img data-src="assets/images/homelab.jpg" width=40%>
+<hr>
+<h4>What is a homelab?</h4>
+<img data-src="assets/images/homelab-mini.jpg" width=80%>
+<hr>
+<h4>What is a homelab?</h4>
+<img data-src="assets/images/homelab-sizeable.jpg" width=80%>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What is Nix? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<p>Not to be confused with *nix</p>
+<hr>
+<h2>What is Nix? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<aside class="notes" data-markdown="">
+<p>Last year I already held a talk at Linuxtage in which I tried to give an overview of all of these.</p>
+<p>If you haven’t seen that talk and are interested, the recording is still available on YouTube and on the Chaos Computer Clubs media server, where this years recordings will also be uploaded.</p>
+</aside>
+<ul>
+<li>Nix Language</li>
+<li>Nix Package Manager</li>
+<li>Nix Package Library - Nixpkgs</li>
+<li>Nix Operating System - NixOS</li>
+<li>…</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What is NixOS? <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<ul>
+<li>Started as research project by Eeelco Dolstra in 2003</li>
+<li>Took off after first stable release branch in 2013 (13.10)</li>
+<li>Stable releases in May and November (e.g. Raccoon - 22.11)</li>
+<li>Receive bugfixes and security updates for 7 months</li>
+</ul>
+<aside class="notes" data-markdown="">
+<p>NixOS is a Linux distribution that has been around since 2003 and was started by Eelco Dolstra as a research project. The distribution only really took off after the first stable release in 2013.</p>
+<p>On NixOS you can follow several different channels.</p>
+<p>There is a stable release of NixOS twice a year in May and November, with a code name like Raccoon and a version number like 22.11 for the November release of 2022.</p>
+<p>Every stable release will receive bugfixes and security updates for seven months.</p>
+<p>After using stable channels for about a year, I have been using the unstable channel since then and have not really had problems, besides the occasional failing build.</p>
+<p>While it is not recommended, it is also possible to directly follow the master branch of Nixpkgs.</p>
+<p>It features atomic upgrades and rollbacks.</p>
+</aside>
+<hr>
+<h2>NixOS <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><code class="language-nix">services = {
+
+  # Start a systemd service for each incoming SSH connection
+  openssh.startWhenNeeded = true;
+
+  # Enable periodic SSD TRIM to extend life of mounted SSDs
+  fstrim.enable = true;
+
+  # Suspend when power button is short-pressed
+  logind.extraConfig = ''
+    HandlePowerKey=suspend
+  '';
+};
+</code></pre>
+<aside class="notes" data-markdown="">
+<p>NixOS relies heavily on systemd, but there is experimental support for other init systems.</p>
+</aside>
+<hr>
+<h2>Landing page <img data-src="assets/images/nix-snowflake.png" width=10%></h2>
+<pre><code class="language-nix">{ ... }:
+
+{
+  services.homepage-dashboard = {
+    enable = true;
+    listenPort = 8082;
+  };
+}
+</code></pre>
+<hr>
+<h3>Landing page <img data-src="assets/images/nix-snowflake.png" width=10%></h3>
+<img data-src="assets/images/homepage-dashboard-default.png" width=100%>
+<hr>
+<h3>Notifications <img data-src="assets/images/nix-snowflake.png" width=10%></h3>
+<pre><code class="language-nix">{ ... }:
+
+let
+  domain = &quot;mydomain.at&quot;;
+  ntfyPort = 6780;
+  ntfyMetricsPort = 9095;
+  ntfyHost = &quot;notifications.${domain}&quot;;
+in
+{
+  services.ntfy-sh = {
+    enable = true;
+    group = &quot;ntfy&quot;;
+    user = &quot;ntfy&quot;;
+    settings = {
+      base-url = &quot;https://${ntfyHost}&quot;;
+      listen-http = &quot;:${toString ntfyPort}&quot;;
+      behind-proxy = true;
+      auth-file = &quot;/var/lib/ntfy/user.db&quot;;
+      # cache-file = &quot;/var/cache/ntfy/cache.db&quot;;
+      attachment-cache-dir = &quot;/var/cache/ntfy/attachments&quot;;
+      auth-default-access = &quot;deny-all&quot;;
+      upstream-base-url = &quot;https://ntfy.sh&quot;;
+      # Set to &quot;disable&quot; to disable web UI
+      # See https://github.com/binwiederhier/ntfy/issues/459
+      web-root = &quot;app&quot;;
+      # Enable metrics endpoint for Prometheus
+      enable-metrics = true;
+      metrics-listen-http = &quot;:${toString ntfyMetricsPort}&quot;;
+    };
+  };
+
+  user.extraGroups = [ &quot;ntfy&quot; ];
+
+  environment.systemPackages = [ services.ntfy-sh.package ];
+
+  networking.firewall.allowedTCPPorts = [ ntfyPort ];
+}
+</code></pre>
+<hr>
+<h4>Notifications <img data-src="assets/images/nix-snowflake.png" width=10%></h4>
+<img data-src="assets/images/ntfy.png" width=60%>
+<hr>
+<h4>Notifications <img data-src="assets/images/nix-snowflake.png" width=10%></h4>
+<img data-src="assets/images/notification.png" width=100%>
+<hr>
+<h4>Home Assistant</h4>
+<pre><code class="language-nix">{ ... }:
+
+let
+  port = 7901;
+  version = &quot;2023.12.2&quot;;
+in
+{
+  virtualisation.oci-containers.containers = {
+    home-assistant = {
+      image = &quot;ghcr.io/home-assistant/home-assistant:${version}&quot;;
+      volumes = [
+        &quot;/var/lib/home-assistant:/config&quot;
+        &quot;/etc/localtime:/etc/localtime:ro&quot;
+      ];
+      extraOptions = [
+        &quot;--device=/dev/ttyUSB0&quot;
+        &quot;--network=host&quot;
+      ];
+      ports = [
+        &quot;${toString port}:${toString port}&quot;
+      ];
+      autoStart = true;
+    };
+  };
+
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ port ];}
+</code></pre>
+<hr>
+<h4>Home Assistant</h4>
+<img data-src="assets/images/home-assistant-dashboard.png" width=100%>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Some service modules</h2>
+<img data-src="assets/images/logos/homeassistant.svg" width=9%>
+<img data-src="assets/images/logos/esphome.svg" width=9%>
+<img data-src="assets/images/logos/jellyfin.svg" width=9%>
+<img data-src="assets/images/logos/uptimekuma.svg" width=9%>
+<img data-src="assets/images/logos/adguard.svg" width=9%>
+<img data-src="assets/images/logos/pihole.svg" width=9%>
+<img data-src="assets/images/logos/prometheus.svg" width=9%>
+<img data-src="assets/images/logos/grafana.svg" width=9%>
+<img data-src="assets/images/logos/vaultwarden.svg" width=9%>
+<img data-src="assets/images/logos/gitlab.svg" width=9%>
+<img data-src="assets/images/logos/gitea.svg" width=9%>
+<img data-src="assets/images/logos/forgejo.svg" width=9%>
+<img data-src="assets/images/logos/influxdb.svg" width=9%>
+<img data-src="assets/images/logos/transmission.svg" width=9%>
+<img data-src="assets/images/logos/radarr.svg" width=9%>
+<img data-src="assets/images/logos/wireguard.svg" width=9%>
+<img data-src="assets/images/logos/nginx.svg" width=9%>
+<img data-src="assets/images/logos/nginxproxymanager.svg" width=9%>
+<img data-src="assets/images/logos/caddy.svg" width=9%>
+<img data-src="assets/images/logos/traefikproxy.svg" width=9%>
+<img data-src="assets/images/logos/minecraft.svg" width=9%>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/qrcode-nixos-at.svg" width=40%>
+</a>
+<p><a href="https://nixos.at">https://nixos.at</a></p>
+<hr>
+<h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/website-screenshot.png" width=80%>
+</a>
+<hr>
+<h3>NixOS User Group Austria</h3>
+<a class="navigate-right">
+    <img data-src="assets/images/next-meetup.png" width=80%>
+</a>
+<hr>
+<h3>Mentioned Resources</h3>
+<ul>
+<li><a href="https://codeberg.org/totoroot/dotfiles">My modular, messy NixOS configuration</a></li>
+<li><a href="https://github.com/awesome-selfhosted/awesome-selfhosted">Awesome Self-Hosted</a> - Community-maintained list of Free Software network services and web applications which can be hosted on your own servers</li>
+<li><a href="https://nix-community.github.io/awesome-nix/">Awesome Nix</a> - Community-maintained link list with helpful resources</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Attributions</h3>
+<ul>
+<li>Image of mini homelab of Reddit user buster072 - <a href="https://www.reddit.com/r/homelab/comments/acuija/my_mini_homelab_with_a_synology_disk_station_and/">Reddit</a></li>
+<li>Image of sizeable homelab of Reddit user lusid1 - <a href="https://www.reddit.com/r/homelab/comments/cig23v/the_little_homelab_under_my_desk_2019_edition/">Reddit</a></li>
+<li>Image of large homelab of Reddit user JaredBanyard - <a href="https://www.reddit.com/r/homelab/comments/f59oi0/homelab_cubed/">Reddit</a></li>
+<li>Image of production-grade “homelab” - <a href="https://www.epmmarshall.com/homelab-intro/">EPM</a></li>
+<li>Brand Logos - <a href="https://simpleicons.org/">Simple Icons</a></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Thanks!</h1>
+<p>curl -sL <a href="https://matthias.thym.at">https://matthias.thym.at</a>/card <br>
+<br>
+<a href="https://blog.thym.at/p/glt24/">https://blog.thym.at/p/glt24</a></p>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
