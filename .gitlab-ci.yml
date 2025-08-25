@@ -7,7 +7,7 @@ stages:
 variables:
   HUGO_VERSION:
     description: "Which version of Hugo to use."
-    value: "latest"
+    value: "0.122.0"
   ALPINE_VERSION:
     description: "Which version of Alpine Linux to use."
     value: "3.22.1"
@@ -20,10 +20,11 @@ variables:
 
 
 hugo-build:
-  image: cgr.dev/chainguard/hugo:$HUGO_VERSION
+  image: hugomods/hugo:$HUGO_VERSION
+  # image: cgr.dev/chainguard/hugo:$HUGO_VERSION
   stage: build
   script:
-    - hugo
+    - hugo build
   artifacts:
       paths:
         - public
