@@ -24,7 +24,7 @@ hugo-build:
   # image: cgr.dev/chainguard/hugo:$HUGO_VERSION
   stage: build
   script:
-    - hugo build
+    - hugo
   artifacts:
       paths:
         - public
