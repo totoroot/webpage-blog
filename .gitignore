@@ -14,8 +14,6 @@ hugo.linux
 .hugo_build.lock
 
 ### Deployment ###
-sshpf
-deploy
 .direnv
 result
 

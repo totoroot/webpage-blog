@@ -33,6 +33,7 @@
             ./.;
           # Link to themes folder and build
           buildPhase = ''
+            rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
             ln -sf ${github-calendar} themes/github-calendar
@@ -58,6 +59,7 @@
           buildInputs = with pkgs; [ hugo ];
           # Link to themes folder
           shellHook = ''
+            rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
             ln -sf ${github-calendar} themes/github-calendar
