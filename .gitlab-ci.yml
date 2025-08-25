@@ -48,7 +48,7 @@ sync-to-server:
     - eval $(ssh-agent -s)
     - ssh-keyscan -t ed25519 $IP_OR_DOMAIN >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - echo $SSH_PRIVATE_KEY | tr -d '\r' | DISPLAY=None ssh-add -
+    - echo $SSH_PRIVATE_KEY | DISPLAY=None ssh-add -
   script:
     - rsync -avz --delete public/ ${USERNAME}@${IP_OR_DOMAIN}:${DIR_PATH}
   rules:
