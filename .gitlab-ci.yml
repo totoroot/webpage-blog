@@ -1,0 +1,51 @@
+---
+
+stages:
+  - build
+  - sync
+
+variables:
+  HUGO_VERSION:
+    description: "Which version of Hugo to use."
+    value: "0.148.2"
+  ALPINE_VERSION:
+    description: "Which version of Alpine Linux to use."
+    value: "3.22.1"
+  DIR_PATH:
+    description: "Path of the public directory of the Hugo site."
+    value: "/var/www/blog.thym.at"
+  USERNAME:
+    description: "User on VPS that is the owner of the public directory of the Hugo site."
+    value: "blog"
+
+
+hugo-build:
+  image: cgr.dev/chainguard/hugo:$HUGO_VERSION
+  stage: build
+  script:
+    - hugo
+  artifacts:
+      paths:
+        - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: manual
+
+sync-to-jam:
+  stage: sync
+  image: alpine:$ALPINE_VERSION
+  before_script:
+    - apk add --update --no-cache rsync
+    - which ssh-agent || apk add --update --no-cache openssh-client
+    - mkdir -p ~/.ssh/
+    - eval $(ssh-agent -s)
+    - ssh-keyscan -t ed25519 $IP_OR_DOMAIN >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - echo $SSH_PRIVATE_KEY | tr -d '\r' | DISPLAY=None ssh-add -
+  script:
+    - rsync -avz --delete public/ ${USERNAME}@${IP_OR_DOMAIN}:${DIR_PATH}
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
