@@ -23,6 +23,9 @@ hugo-build:
   image: hugomods/hugo:$HUGO_VERSION
   # image: cgr.dev/chainguard/hugo:$HUGO_VERSION
   stage: build
+  before_script:
+    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/hugo-theme-stack
+    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/hugo-github-calendar
   script:
     - hugo
   artifacts:
@@ -34,9 +37,11 @@ hugo-build:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: manual
 
-sync-to-jam:
+sync-to-server:
   stage: sync
   image: alpine:$ALPINE_VERSION
+  needs:
+    - job: hugo-build
   before_script:
     - apk add --update --no-cache rsync
     - which ssh-agent || apk add --update --no-cache openssh-client
