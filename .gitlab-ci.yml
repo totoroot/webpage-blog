@@ -7,7 +7,7 @@ stages:
 variables:
   HUGO_VERSION:
     description: "Which version of Hugo to use."
-    value: "0.148.2"
+    value: "latest"
   ALPINE_VERSION:
     description: "Which version of Alpine Linux to use."
     value: "3.22.1"
