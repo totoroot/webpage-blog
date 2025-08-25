@@ -44,11 +44,11 @@ sync-to-server:
   before_script:
     - apk add --update --no-cache rsync
     - which ssh-agent || apk add --update --no-cache openssh-client
-    - mkdir -p ~/.ssh/
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - eval $(ssh-agent -s)
-    - ssh-keyscan -t ed25519 $IP_OR_DOMAIN >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    - echo $SSH_PRIVATE_KEY | DISPLAY=None ssh-add -
+    - ssh-keyscan -t ed25519 $IP_OR_DOMAIN >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+    - chmod 400 $SSH_PRIVATE_KEY
+    - ssh-add $SSH_PRIVATE_KEY
   script:
     - rsync -avz --delete public/ ${USERNAME}@${IP_OR_DOMAIN}:${DIR_PATH}
   rules:
