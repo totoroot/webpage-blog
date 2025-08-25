@@ -18,23 +18,6 @@
         "type": "github"
       }
     },
-    "github-calendar": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1680258091,
-        "narHash": "sha256-1IKnw78iwhlF2AEbiPD6PVxNM0lXc8PvjLNQITelSkQ=",
-        "ref": "main",
-        "rev": "2f9f47bd7034f7ed6abddde7f356cd90640d1ad2",
-        "revCount": 4,
-        "type": "git",
-        "url": "https://codeberg.org/totoroot/hugo-github-calendar"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://codeberg.org/totoroot/hugo-github-calendar"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1755615617,
@@ -54,7 +37,6 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "github-calendar": "github-calendar",
         "nixpkgs": "nixpkgs",
         "stack": "stack"
       }

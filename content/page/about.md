@@ -27,7 +27,7 @@ If you were instead looking for my professional resume or want to know more abou
 
 As I like to contribute to and share my own Open Source projects I have profiles on popular Git forges.
 
-As I try to endorse Free and Open Source Software, I nowadays generally prefer [Codeberg](https://codeberg.org/totoroot/) to [GitHub](https://github.com/totoroot/), so some of my repositories on GitHub are only mirrors of the corresponding repositories on Codeberg which are synced once per day.
+Since I try to endorse Free and Open Source Software, I nowadays generally prefer [Codeberg](https://codeberg.org/totoroot/) to [GitHub](https://github.com/totoroot/), so some of my repositories on GitHub are only mirrors of the corresponding repositories on Codeberg which are synced once per day.
 
 I also have accounts on [sourcehut](https://sr.ht/~totoroot/) and [GitLab](https://gitlab.com/totoroot) but both are currently not in use.
 
@@ -36,12 +36,6 @@ In case you want to take a look the latest commits of my own projects, please cl
 If you have questions about any of my projects, please feel free to get in touch using my commit Email address or open an issue in the corresponding repository.
 
 I still use my GitHub account to contribute to other projects that are still not on a [less corporate Git forge](https://alternativeto.net/software/github/?license=opensource), especially [nixpkgs](https://github.com/NixOS/nixpkgs).
-
-Here are my recent contributions on GitHub:
-
-{{< github-calendar username="totoroot" responsive=true tooltips=false globalStats=false width=100 backgroundColor=#303030 textColor=#ececec >}}{{</ github-calendar >}}
-
-The graph is generated with [Bloggify's github-calendar.js](https://github.com/Bloggify/github-calendar) using my [HUGO shortcode]().
 
 You can also find me [in the Fediverse on Fosstodon](https://fosstodon.org/@totoroot) and get in touch with me there:
 

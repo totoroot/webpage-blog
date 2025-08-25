@@ -25,9 +25,8 @@ hugo-build:
   stage: build
   before_script:
     - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/stack
-    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/github-calendar
   script:
-    - hugo
+    - hugo --minify
   artifacts:
       paths:
         - public

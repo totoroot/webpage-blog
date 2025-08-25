@@ -4,21 +4,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-
     # Import theme
     stack = {
       url = "git+https://codeberg.org/totoroot/hugo-theme-stack?ref=main";
       flake = false;
     };
-
-    # Import shortcode module
-    github-calendar = {
-      url = "git+https://codeberg.org/totoroot/hugo-github-calendar?ref=main";
-      flake = false;
-    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, stack, github-calendar }:
+  outputs = { self, nixpkgs, flake-utils, stack }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -36,7 +29,6 @@
             rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
-            ln -sf ${github-calendar} themes/github-calendar
             ls themes -l
             ${pkgs.hugo}/bin/hugo --minify
           '';
@@ -62,7 +54,6 @@
             rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
-            ln -sf ${github-calendar} themes/github-calendar
           '';
         };
       });
