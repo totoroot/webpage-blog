@@ -24,8 +24,8 @@ hugo-build:
   # image: cgr.dev/chainguard/hugo:$HUGO_VERSION
   stage: build
   before_script:
-    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/hugo-theme-stack
-    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/hugo-github-calendar
+    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/stack
+    - git clone https://codeberg.org/totoroot/hugo-theme-stack themes/github-calendar
   script:
     - hugo
   artifacts:
