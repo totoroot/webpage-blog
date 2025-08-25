@@ -53,6 +53,20 @@ I'll try and update this as soon as I find a solution for other desktop environm
 Cheers,\
 Matthias
 
+## Update 2024
+
+Since Plasma 6.1, which was widely released in June of 2024, there is now an option to enable this feature if you are on Wayland.
+
+To enable/disable this feature follow these steps:
+
+```txt
+System Settings → Accessibility → Shake Cursor → “Shake cursor to find it”
+```
+
+![Shake Cursor Menu](/jiggling-cursors/shake-cursor-menu-kde-plasma-6.png)
+
+You can read the release notes of Plasma 6.1 [here](https://kde.org/announcements/plasma/6/6.1.0/).
+
 ---
 
 *Title image by [Caspar Camille Rubin](https://unsplash.com/@casparrubin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/fPkvU7RDmCo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*
