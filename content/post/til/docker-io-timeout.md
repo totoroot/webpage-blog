@@ -32,11 +32,11 @@ Usually it goes like this:
 
 ### Containerisation workflow
 
-For step 3 I mostly stick to the following workflow:
+For step 3, I mostly stick to the following workflow:
 
 - Get application to build locally
 - If it's a frontend project, get annoyed that it is using yet another JS framework or different tooling
-  - Last time it was yarn, this other person likes to stick to npm, but this person is using pnpm (which is actually pretty neat 👀)
+> Last time it was yarn, this other person likes to stick to npm, but this person is using pnpm (which is actually pretty neat 👀)
 - Put together a simple Dockerfile (often copy-pasting from related projects I've containerised before)
 - Use a simple Docker Compose setup to build and run the application in case external services have to be accessed (this could be a Kafka cluster, a PostgreSQL database or even something like a BigTable emulator)
 - Iterate to get it working
@@ -67,6 +67,7 @@ failed to solve: node:24-alpine: failed to resolve source metadata for docker.io
 Notice something strange about this error message?
 
 Why would it try to lookup `docker.io` on the local network range? 🤔
+
 Maybe it's DNS...it' always DNS, right?
 
 Checked `/etc/resolv.conf`. Seems fine.
@@ -114,7 +115,7 @@ So all I had to do was stop the buildkit container:
 docker stop buildx_buildkit_multiarch-builder0
 ```
 
-When re-running `docker compose up` it recreates the buildkit container anyways and it should work again.
+When re-running `docker compose up`, it recreates the buildkit container anyways and building should now work again.
 
 ## The why
 
