@@ -36,11 +36,11 @@ params:
         lastUpdated: January 02, 2006 15:04 MST
 
     sidebar:
-        emoji: 🌿
+        emoji: 🌻
         subtitle: My Personal Brain Dump
         avatar:
             local: true
-            src: img/profile-picture.png
+            src: images/profile-picture.png
 
     article:
         math: false
