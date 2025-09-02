@@ -34,10 +34,28 @@
         "type": "github"
       }
     },
+    "plausible": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733872129,
+        "narHash": "sha256-QFjIWJp/N3UMBEwdZtIZTl5RIZoGmE76Wu1ANl+eTVQ=",
+        "ref": "master",
+        "rev": "25d00b53c8ba5bac67329d4ed552b11322093811",
+        "revCount": 150,
+        "type": "git",
+        "url": "https://github.com/totoroot/plausible-hugo"
+      },
+      "original": {
+        "ref": "master",
+        "type": "git",
+        "url": "https://github.com/totoroot/plausible-hugo"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
+        "plausible": "plausible",
         "stack": "stack"
       }
     },

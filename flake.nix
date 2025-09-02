@@ -9,9 +9,13 @@
       url = "git+https://codeberg.org/totoroot/hugo-theme-stack?ref=main";
       flake = false;
     };
+    plausible = {
+      url = "git+https://github.com/totoroot/plausible-hugo?ref=master";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, stack }:
+  outputs = { self, nixpkgs, flake-utils, stack, plausible }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -29,6 +33,7 @@
             rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
+            ln -sf ${plausible} themes/plausible-hugo
             ls themes -l
             ${pkgs.hugo}/bin/hugo --minify
           '';
@@ -54,6 +59,7 @@
             rm -rf themes
             mkdir -p themes
             ln -sf ${stack} themes/stack
+            ln -sf ${plausible} themes/plausible-hugo
           '';
         };
       });

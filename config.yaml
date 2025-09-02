@@ -2,7 +2,10 @@
 
 baseurl: https://blog.thym.at/
 languageCode: en-us
-theme: ["stack"]
+theme: [
+  "stack",
+  "plausible-hugo"
+]
 paginate: 5
 title: totoroot's blog
 
@@ -14,13 +17,16 @@ permalinks:
     post: /p/:slug/
     page: /:slug/
 
-
 module:
     hugoVersion:
         extended: true
         min: "0.87.0"
 
 params:
+    plausible:
+        enable: true
+        selfhosted_domain: "besucherinnen.überwachungsbehör.de"
+
     mainSections:
         - post
     featuredImageField: image
